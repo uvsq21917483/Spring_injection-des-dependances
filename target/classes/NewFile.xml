@@ -1,0 +1,21 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns:aop="http://www.springframework.org/schema/aop" 
+ xsi:schemaLocation=" http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="leBeanLogin" class="dao.Login"/>
+  	<bean id="decore" class="dao.MaDecoration"/>
+  	
+  	<aop:config>
+		
+<aop:pointcut id="monPointCut" expression="execution(* *.*.dao*(..))"/>
+	
+		<aop:aspect id="decoreAspect" ref="decore">
+<aop:before method="ecrireAvant"  pointcut-ref="monPointCut"/>    
+	 
+	 	</aop:aspect>
+
+   </aop:config>
+  	
+  	</beans>
+  	
